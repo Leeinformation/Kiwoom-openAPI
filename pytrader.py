@@ -6,6 +6,7 @@ from PyQt5 import uic
 
 from kiwoom import Kiwoom
 from Qthread_1 import Thread1
+from Qthread_2 import Thread2
 
 form_class = uic.loadUiType("pytrader.ui")[0]
 
@@ -29,6 +30,7 @@ class Login_Machnine(QMainWindow, QWidget, form_class) :
         self.signal_login_commConnect()
         
         self.call_account.clicked.connect(self.c_acc)
+        self.acc_manage.clicked.connect(self.a_manage)
         
     def setUI(self) :
         self.setupUi(self)
@@ -64,6 +66,11 @@ class Login_Machnine(QMainWindow, QWidget, form_class) :
         print("선택 계좌 정보 가져오기")
         h1 = Thread1(self)
         h1.start()
+        
+    def a_manage(self) :
+        print("계좌 관리")
+        h2 = Thread2(self)
+        h2.start()
 
 if __name__ == "__main__" :
     app = QApplication(sys.argv)

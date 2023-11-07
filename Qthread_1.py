@@ -30,7 +30,7 @@ class Thread1(QThread) :
         print("계좌평가잔고내역 조회")
         account = self.parent.accComboBox.currentText()
         self.account_num = account
-        print("선택 계좌는 %s" % self.account_num)
+        print(f"선택 계좌는 {self.account_num}")
 
         self.k.kiwoom.dynamicCall("SetInputValue(String, String)", "계좌번호", account)
         self.k.kiwoom.dynamicCall("SetInputValue(String, String)", "비밀번호", "")
@@ -51,7 +51,7 @@ class Thread1(QThread) :
             self.parent.stocklistTableWidget_2.setRowCount(rowCount)
             self.parent.stocklistTableWidget_2.setHorizontalHeaderLabels(column_head) 
             
-            print("계좌에 들어있는 종목 수 %s" % rowCount)
+            print(f"계좌에 들어있는 종목 수 {rowCount}")
 
             totalBuyingPrice = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, 0, "총매입금액"))
             currentTotalPrice = int(self.k.kiwoom.dynamicCall("GetCommData(QString, QString, int, QString)", sTrCode, sRQName, 0, "총평가금액"))
